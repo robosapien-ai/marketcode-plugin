@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "marketcode": {
+      "type": "http",
+      "url": "https://mcp.marketcode.ai/mcp"
+    }
+  }
+}

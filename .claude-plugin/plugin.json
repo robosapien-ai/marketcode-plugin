@@ -1,0 +1,15 @@
+{
+  "name": "marketcode",
+  "displayName": "MarketCode",
+  "version": "1.0.0",
+  "description": "UK property data inside your assistant: addresses and UPRNs, property records, ownership, planning, valuations, auctions, market analytics. Read-only tools from MarketCode's MCP server, with OAuth sign-in.",
+  "author": {
+    "name": "MarketCode",
+    "url": "https://marketcode.ai"
+  },
+  "homepage": "https://marketcode.ai/data/mcp",
+  "repository": "https://github.com/robosapien-ai/marketcode-plugin",
+  "license": "MIT",
+  "keywords": ["uk", "property", "real-estate", "uprn", "land-registry", "valuation", "planning", "auctions", "mcp"],
+  "mcpServers": "./.mcp.json"
+}
