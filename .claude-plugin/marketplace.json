@@ -1,6 +1,6 @@
 {
   "name": "marketcode",
-  "description": "MarketCode: UK property data tools (addresses, records, ownership, planning, valuations, auctions, market analytics) via an OAuth-secured MCP server.",
+  "description": "MarketCode: UK property data tools (addresses, records, ownership, planning, valuations, auctions, market analytics) via an OAuth-secured MCP server, with skills for valuation, area insights, sourcing, deal analysis, due diligence and planning checks.",
   "owner": {
     "name": "MarketCode",
     "url": "https://marketcode.ai"
@@ -10,8 +10,8 @@
       "name": "marketcode",
       "source": "./",
       "displayName": "MarketCode",
-      "description": "UK property data inside your assistant: addresses, property records, ownership, planning, valuations, auctions and market analytics from MarketCode's MCP server.",
-      "version": "1.0.0",
+      "description": "UK property data inside your assistant, plus six deliverable skills (valuation, area brief, sourcing, deal analysis, due diligence, planning check) over MarketCode's MCP server.",
+      "version": "1.1.0",
       "author": {
         "name": "MarketCode",
         "url": "https://marketcode.ai"
@@ -24,7 +24,9 @@
         "uprn",
         "land-registry",
         "valuation",
-        "planning"
+        "planning",
+        "sourcing",
+        "skills"
       ]
     }
   ]

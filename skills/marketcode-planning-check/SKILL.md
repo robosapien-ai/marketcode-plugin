@@ -1,0 +1,111 @@
+---
+name: marketcode-planning-check
+description: Check the planning position of a UK site with the MarketCode tools: every designation and constraint at the address, graded by severity; recent and decided applications nearby; the flood position; and what it means for a stated proposal or application type, with the documents the proposal will likely need. Use for "can I build here", "what are the constraints", "is it in a conservation area", or the first pass before a planning application. Every call is free.
+module: sourcing
+---
+
+# Planning check
+
+You are producing the planning position of a site: what constrains it,
+what has been decided around it, and what that means for the user's
+proposal. It is the first pass a planner does before advice; it is not
+planning advice, and the report says so.
+
+Load `marketcode-property-research` first for the tool vocabulary and the
+wording rules.
+
+## Credit budget
+
+`planning_designations`, `planning_applications`, `property_flood_risk`,
+`epc_certificates` and `transactions_by_uprn` cost 0. `property_summary`
+costs 4 and is optional (for the existing building). `address_resolve`
+costs 8 if the user typed an address. Say so, then proceed.
+
+## Inputs
+
+The site (address, postcode or UPRN). Optionally the proposal: application
+type (householder extension, full residential, change of use, HMO, listed
+building consent, prior approval) and a one-line description. Without a
+proposal, deliver the position and say which proposals it would bear on.
+
+## Phase A: gather (parallel)
+
+1. `planning_designations(postcode or location)`: thirteen checks in one
+   call (conservation area, listed buildings, Article 4, TPO, green belt,
+   AONB, national park, flood zones, SSSI, ancient woodland, scheduled
+   monuments, brownfield register, heritage at risk).
+2. `planning_applications(postcode or location)`: recent applications
+   with type, status and decision.
+3. `property_flood_risk(uprn)`: surface-water position, which the
+   designations' fluvial and tidal zones do not cover.
+4. Optional: `property_summary(uprn)` for the existing building (type,
+   year, floor area, tenure) and `epc_certificates(uprn)` where energy
+   measures are part of the proposal.
+
+## Phase B: grade and interpret
+
+Grade each present constraint:
+
+| Grade | Meaning | Typical |
+|---|---|---|
+| BLOCKER | development very unlikely | green belt, functional floodplain |
+| HIGH | significant extra requirements | conservation area, AONB, Grade I or II* nearby |
+| MEDIUM | some extra requirements | flood zone 2, Grade II, TPO |
+| LOW | minor considerations | low flood risk |
+
+Then the site's development sensitivity: very high (a blocker), high
+(several HIGH or green belt), medium (one HIGH or a conservation area),
+standard.
+
+For the nearby applications: cluster by type, note the approval and
+refusal pattern, and pull out any decision that is a direct precedent for
+the user's proposal (same type, same street or neighbours).
+
+## Phase C: what it means for the proposal
+
+Map constraints to consequences in plain English, for the stated
+application type:
+
+- Conservation area: design and materials scrutiny; permitted development
+  rights reduced; a heritage statement is usually needed.
+- Listed building or setting: listed building consent for works to fabric;
+  a heritage statement; the setting matters for neighbours' listings too.
+- Article 4: the permitted development route the user may be counting on
+  is withdrawn for the direction's classes; check which.
+- TPO: any works within the root protection area need consent; an
+  arboricultural report.
+- Flood zone 2 or 3: sequential and exception tests; a flood risk
+  assessment; vulnerable uses at or below flood level are the issue.
+- Green belt: very special circumstances; expect refusal for new build.
+- AONB or national park: landscape impact; major development resisted.
+- Brownfield register entry: a positive signal for residential; note the
+  register's permission-in-principle route.
+
+Documents the proposal will likely need, as a checklist keyed to the
+constraints above (planning statement; design and access statement for
+major or conservation-area schemes; heritage statement; flood risk
+assessment; arboricultural report; ecology where SSSI or ancient woodland
+is near). Mark each: needed, probably needed, not needed.
+
+## Report (markdown)
+
+1. **Position in one sentence** and the sensitivity grade.
+2. **Constraints** table: designation, present or not, grade, source.
+3. **Flood** position: fluvial, tidal, surface water.
+4. **Nearby decisions**: the cluster summary and the precedents.
+5. **For your proposal**: consequences and the document checklist.
+6. **Next steps**: pre-application advice with the local planning
+   authority where sensitivity is high; the portal to check; what to
+   commission first.
+7. **Sources**: one line per tool.
+
+## Rules
+
+- Distinguish "the authority almost always accepts X" from "X is
+  compliant"; you have the constraints, not the policy text.
+- If a likely refusal is visible, say so and suggest a pivot (reduce
+  scope, add mitigation, seek pre-app).
+- Do not cite policy numbers you have not read; name the policy area
+  instead and tell the user where the local plan lives.
+- This is a desk check, not planning advice; recommend the local planning
+  authority's pre-application service for anything graded HIGH or above.
