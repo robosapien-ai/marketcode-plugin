@@ -3,9 +3,10 @@ name: Skills name real tools
 # Every tool a skill lists must exist on the MCP server. The plugin repo had
 # no CI at all, so a renamed or removed tool would sit in a skill's `tools`
 # list — and in a SKILL.md credit table — looking authoritative until a user
-# hit it. The server's catalogue (`_catalogue.TOOL_TITLES` in
-# marketcode-service) is the source of truth: it is itself tested against the
-# registered tools, so a name found there is a name a model can call.
+# hit it. The source of truth here is the LIVE server's `tools/list` at the
+# URL the plugin itself points at (.mcp.json): discovery is served without
+# credentials, and what the server lists is exactly what a model can call.
+# (A checkout of the server repo would need a token this repo does not hold.)
 
 on:
   push:
@@ -13,38 +14,41 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"   # weekly, so a server-side rename is caught without a plugin push
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          repository: robosapien-ai/marketcode-service
-          token: ${{ secrets.CI_TOKEN }}
-          path: _marketcode-service
-          fetch-depth: 1
       - uses: actions/setup-python@v4
         with:
           python-version: '3.12'
-      - name: Every listed tool exists in the server catalogue
+      - name: Every listed tool exists on the live MCP server
         run: |
           python - <<'PY'
-          import json, pathlib, re, sys
-          cat = pathlib.Path("_marketcode-service/mcp/src/marketcode_mcp/_catalogue.py").read_text()
-          block = cat.split("TOOL_TITLES", 1)[1].split("}", 1)[0]
-          titles = set(re.findall(r'^\s*"([a-z_0-9]+)":', block, re.M))
+          import json, pathlib, re, sys, urllib.request
+          url = json.loads(pathlib.Path(".mcp.json").read_text())["mcpServers"]["marketcode"]["url"] if "marketcode" in json.loads(pathlib.Path(".mcp.json").read_text()).get("mcpServers", {}) else next(iter(json.loads(pathlib.Path(".mcp.json").read_text())["mcpServers"].values()))["url"]
+          body = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
+          req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "Accept": "application/json, text/event-stream"})
+          raw = urllib.request.urlopen(req, timeout=60).read().decode()
+          txt = "".join(l[5:] for l in raw.splitlines() if l.startswith("data:")) if "data:" in raw else raw
+          live = {t["name"] for t in json.loads(txt)["result"]["tools"]}
           index = json.loads(pathlib.Path("skills/index.json").read_text())
           listed = {t for s in index["skills"] for t in s.get("tools", [])}
-          skill_md = " ".join(p.read_text() for p in pathlib.Path("skills").glob("*/SKILL.md"))
-          mentioned = set(re.findall(r"`([a-z][a-z_0-9]+)`", skill_md)) & {t for t in re.findall(r"[a-z][a-z_0-9]+", skill_md)}
-          bad_index = sorted(listed - titles)
-          bad_md = sorted({m for m in mentioned if m in listed or m.startswith(("property_","market_","valuation_","planning_","sourcing_","address_","auction_","ownership_","listing_","area_","comps_","subject_","time_","cost_","query_","epc_","energy_","retrofit_","solar_","equity_","long_held","mortgage_","lha_","h3_","building_","mixed_use","plot_","agent_","transactions_","distressed_","council_","commercial_","asking_"))} - titles)
-          print(f"catalogue tools: {len(titles)}; listed in index.json: {len(listed)}")
+          md = " ".join(p.read_text() for p in pathlib.Path("skills").glob("*/SKILL.md"))
+          in_md = {m for m in re.findall(r"`([a-z][a-z0-9_]+)`", md) if "_" in m and not m.isupper()}
+          # A backticked snake_case token in a SKILL.md that is ALSO a tool-shaped name
+          # (any listed tool, or any live tool) must be live. Plain field names in
+          # backticks (e.g. `uprn_match_tier`) are not tools and are not checked.
+          suspects = {m for m in in_md if m in listed or m in live or m.split("_")[0] in {t.split("_")[0] for t in live}}
+          bad_index = sorted(listed - live)
+          bad_md = sorted(suspects - live)
+          print(f"live tools: {len(live)}; listed in index.json: {len(listed)}; url: {url}")
           if bad_index:
-              print("index.json names tools the server does not have:", bad_index); sys.exit(1)
+              print("index.json names tools the server does not serve:", bad_index); sys.exit(1)
           if bad_md:
-              print("SKILL.md files name tools the server does not have:", bad_md); sys.exit(1)
+              print("SKILL.md files name tool-shaped tokens the server does not serve:", bad_md); sys.exit(1)
           print("ok")
           PY
