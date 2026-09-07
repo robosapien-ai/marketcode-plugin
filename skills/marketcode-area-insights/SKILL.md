@@ -108,3 +108,12 @@ bands; it is a projection of the smoothed index, not a valuation, and seven
 is the horizon published. `supply_demand(area_code)` gives live stock today
 and the monthly flow (added, reduced, reduction share, agent concentration,
 asking-to-sold); the stock series began 2026-09-05 and is forward-only.
+
+## Data coverage (added 7 Sep 2026, free)
+
+`data_coverage(area)` is the register to read before quoting any share for
+an authority: per-field non-null and source shares over every unit, which
+designation flags were checked and how fully, lease and rateable link
+shares, the official planning coverage row (London boroughs only today) and
+the listing sweep share. State the coverage before a figure from a thin
+field, and prefer it to guessing why a number looks low.

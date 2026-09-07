@@ -33,7 +33,9 @@
         "property_risk_report",
         "market_yields",
         "market_forecast",
-        "supply_demand"
+        "supply_demand",
+        "data_coverage",
+        "commercial_property"
       ],
       "creditsEstimate": "0 to 25 per call, stated before each paid call",
       "status": "live"
@@ -105,7 +107,8 @@
         "market_ranking",
         "market_yields",
         "market_forecast",
-        "supply_demand"
+        "supply_demand",
+        "data_coverage"
       ],
       "creditsEstimate": "0",
       "status": "live"
@@ -134,7 +137,8 @@
         "listing_stock_series",
         "property_lease_batch",
         "property_risk_report_batch",
-        "market_yields"
+        "market_yields",
+        "data_coverage"
       ],
       "creditsEstimate": "13 to 30",
       "status": "live"
@@ -163,7 +167,9 @@
         "cost_index",
         "time_adjustment",
         "property_risk_report",
-        "market_forecast"
+        "market_forecast",
+        "build_cost",
+        "commercial_property"
       ],
       "creditsEstimate": "5 to 17",
       "status": "live"
@@ -192,7 +198,9 @@
         "comps_adjustments",
         "property_lease",
         "property_risk_report",
-        "property_risk_report_batch"
+        "property_risk_report_batch",
+        "property_planning_history",
+        "commercial_property"
       ],
       "creditsEstimate": "11 to 25",
       "status": "live"
@@ -211,7 +219,9 @@
         "epc_certificates",
         "transactions_by_uprn",
         "planning_check",
-        "property_risk_report"
+        "property_risk_report",
+        "property_planning_history",
+        "property_planning_history_batch"
       ],
       "creditsEstimate": "0 to 12",
       "status": "live"

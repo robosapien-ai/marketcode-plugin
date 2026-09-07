@@ -117,3 +117,14 @@ reason when the register holds none. `property_risk_report(uprn)` (1 credit)
 is every designation and hazard flag THREE-VALUED with its source — report
 `not_checked` and `defaulted_false` as exactly that, never as "clear". The
 `_batch` twins take up to 100 UPRNs at 1 credit per property answered.
+
+## Planning history and the commercial report (added 7 Sep 2026)
+
+`property_planning_history(uprn)` (1 credit): the applications AT the
+address with decision, dates, appeal and CIL, plus `consent_context`
+(three-valued — `unchecked` is not clear) and `coverage` (London boroughs
+only today; `not_covered` is free and is not "no applications").
+`commercial_property(uprn | uarn)` (2 credits) for a rated unit: RV and
+sector, the four-list rent index, an income-basis value with its yield
+receipt, auction history, owner and lease; blocks that cannot be derived say
+`not_available` with the reason.

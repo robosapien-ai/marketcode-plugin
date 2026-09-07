@@ -110,3 +110,15 @@ is near). Mark each: needed, probably needed, not needed.
   instead and tell the user where the local plan lives.
 - This is a desk check, not planning advice; recommend the local planning
   authority's pre-application service for anything graded HIGH or above.
+
+## Planning history at the property (added 7 Sep 2026)
+
+`property_planning_history(uprn)` (1 credit) is the history AT the address:
+applications linked to the unit or its building by the mart's entity links,
+each with decision, dates, appeal, CIL liability, development type and a
+`match_level` (`unit`, `building`, or `nearby` within 25 m when nothing is
+linked — say which). `consent_context` reads the designation flags
+three-valued: report `applies` as constraints and `unchecked` as unknown,
+never as clear. `coverage.covered` is false outside the 33 London boroughs
+today; `status: not_covered` is a different answer from `no_applications`,
+and it is not charged. The `_batch` twin takes up to 100 UPRNs.

@@ -117,3 +117,20 @@ scheme).
   can change, and the report says so.
 - MarketCode has no build-cost tool; do not invent one. If the user has no
   cost view, run the appraisal at a low and a high cost and show both.
+
+## Build cost and the commercial report (added 7 Sep 2026)
+
+`build_cost(sector, region, gia_m2, rate_gbp_m2, rate_period)` (free) gives
+the sector's cost index with its 1- and 5-year movement, the regional factor
+(NATIONAL, LONDON, SOUTH_EAST) and the on-cost percentages; with a GIA and
+YOUR base rate (BCIS or in-house, dated by `rate_period`, e.g. 2024Q1) it
+rebases the rate through the index, localises it and returns totals at low /
+mid / high on-costs. No £/m² benchmark is loaded yet — the tool says
+`not_available` rather than inventing one, so always ask the user for a rate.
+
+`commercial_property(uprn | uarn)` (2 credits) is the commercial report:
+hereditament (RV, sector, description), the sector rent index across four
+lists, the capital index, an `income_basis_value` that capitalises the RV at
+the district's commercial auction yield (quote its `yield_basis`, and say
+`not_available` when the district has none), auction history, owner, lease.
+RV is a rating measure at the antecedent valuation date, not passing rent.

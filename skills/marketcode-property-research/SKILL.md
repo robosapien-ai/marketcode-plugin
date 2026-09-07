@@ -63,3 +63,11 @@ description; most are free.
 - Valuations are estimates with a range. Quote the range, not only the point.
 - Coverage is England and Wales for registry data and UK for addresses; say
   which when it matters.
+
+## Coverage first (added 7 Sep 2026)
+
+For any area-level claim, call `data_coverage(area)` (free) first and state
+the field's coverage beside the figure. For a shop, office or other rated
+unit, `commercial_property(uprn | uarn)` (2 credits) is the report; its
+`income_basis_value` is an indicative capitalisation of the rateable value,
+not a valuation — say so.
