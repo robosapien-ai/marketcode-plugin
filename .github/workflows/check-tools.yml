@@ -31,7 +31,13 @@ jobs:
           import json, pathlib, re, sys, urllib.request
           url = json.loads(pathlib.Path(".mcp.json").read_text())["mcpServers"]["marketcode"]["url"] if "marketcode" in json.loads(pathlib.Path(".mcp.json").read_text()).get("mcpServers", {}) else next(iter(json.loads(pathlib.Path(".mcp.json").read_text())["mcpServers"].values()))["url"]
           body = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
-          req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "Accept": "application/json, text/event-stream"})
+          # Cloudflare's browser-integrity check (error 1010) refuses the default
+          # Python user agent; a named one passes. Same headers the MCP clients send.
+          req = urllib.request.Request(url, data=json.dumps(body).encode(), headers={
+              "Content-Type": "application/json", "Accept": "application/json, text/event-stream",
+              "MCP-Protocol-Version": "2025-06-18",
+              "User-Agent": "marketcode-plugin-ci/1.0 (+https://github.com/robosapien-ai/marketcode-plugin)",
+          })
           raw = urllib.request.urlopen(req, timeout=60).read().decode()
           txt = "".join(l[5:] for l in raw.splitlines() if l.startswith("data:")) if "data:" in raw else raw
           live = {t["name"] for t in json.loads(txt)["result"]["tools"]}
