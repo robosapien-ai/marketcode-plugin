@@ -13,7 +13,7 @@ Requirements were checked against the two sets of developer docs on
 | Auth | OAuth 2.1 with PKCE. CIMD and DCR. Issuer `https://api.marketcode.ai`. Protected-resource metadata at `https://mcp.marketcode.ai/.well-known/oauth-protected-resource` |
 | Redirects accepted | `https://chatgpt.com/connector_platform_oauth_redirect`, `https://chatgpt.com/connector/oauth/{id}`, `https://claude.ai/api/mcp/auth_callback`, loopback `http://127.0.0.1:{port}/callback` and `http://localhost/callback` (RFC 8252) |
 | RFC 9207 `iss` | on every authorization response; advertised in metadata |
-| Tools | 75, all read-only. Every tool carries `title` (top-level and `annotations.title`), `annotations.readOnlyHint: true`, `destructiveHint: false`, `openWorldHint: false`, and `_meta["marketcode.ai/credits"]` with its price |
+| Tools | 79, all read-only. Every tool carries `title` (top-level and `annotations.title`), `annotations.readOnlyHint: true`, `destructiveHint: false`, `openWorldHint: false`, and `_meta["marketcode.ai/credits"]` with its price |
 | Discovery | `tools/list` needs no credentials; the tool list is the public catalogue |
 | Unpaid call | HTTP 402 whose body links to `https://marketcode.ai/data/mcp#credits`, an information page. The plugin never links to a checkout |
 
@@ -66,7 +66,7 @@ Requirements were checked against the two sets of developer docs on
 Every tool reads from MarketCode's property warehouse and writes nothing: no
 tool creates, changes or deletes any record, account or setting, and none
 sends messages or money. `readOnlyHint` is true and `destructiveHint` false
-on all 75. `openWorldHint` is false because every tool answers from
+on all 79. `openWorldHint` is false because every tool answers from
 MarketCode's own database rather than the open web.
 
 ## Review account
@@ -124,7 +124,7 @@ submitting and paste the actual output next to the expectation.
 ## Checklist
 
 - [x] OAuth 2.1 with CIMD and DCR, ChatGPT and Claude redirect URIs, loopback for Codex
-- [x] `title` (top-level and inside `annotations`) and read-only annotations on all 75 tools; `_meta` price on each
+- [x] `title` (top-level and inside `annotations`) and read-only annotations on all 79 tools; `_meta` price on each
 - [x] `tools/list` public; discovery and token endpoints answer in under a second
 - [x] 402 links to an information page, not a checkout
 - [x] Privacy, terms, support pages live; `www.marketcode.ai` resolves

@@ -35,7 +35,8 @@
         "market_forecast",
         "supply_demand",
         "data_coverage",
-        "commercial_property"
+        "commercial_property",
+        "sourcing_strategies"
       ],
       "creditsEstimate": "0 to 25 per call, stated before each paid call",
       "status": "live"
@@ -108,7 +109,8 @@
         "market_yields",
         "market_forecast",
         "supply_demand",
-        "data_coverage"
+        "data_coverage",
+        "sourcing_strategies"
       ],
       "creditsEstimate": "0",
       "status": "live"
@@ -138,7 +140,11 @@
         "property_lease_batch",
         "property_risk_report_batch",
         "market_yields",
-        "data_coverage"
+        "data_coverage",
+        "sourcing_strategies",
+        "sourcing_live_listings",
+        "sourcing_offmarket_owners",
+        "land_assembly"
       ],
       "creditsEstimate": "13 to 30",
       "status": "live"
@@ -169,7 +175,9 @@
         "property_risk_report",
         "market_forecast",
         "build_cost",
-        "commercial_property"
+        "commercial_property",
+        "sourcing_live_listings",
+        "sourcing_strategies"
       ],
       "creditsEstimate": "5 to 17",
       "status": "live"

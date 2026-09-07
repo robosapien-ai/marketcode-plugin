@@ -134,3 +134,34 @@ lists, the capital index, an `income_basis_value` that capitalises the RV at
 the district's commercial auction yield (quote its `yield_basis`, and say
 `not_available` when the district has none), auction history, owner, lease.
 RV is a rating measure at the antecedent valuation date, not passing rent.
+
+## Strategies, the live lane and assembly (added 7 Sep 2026)
+
+Sourcing is preset-first now. Call `sourcing_strategies(area=<LAD GSS code>)`
+FIRST (free): it returns the nine presets with their filters, ranking
+components and, per authority, `data_ready`. Then run
+`sourcing_search(strategy="short_lease_enfranchisement", lad_code="E09000032")`
+(2 credits) — every row comes back with `score_components` saying which term
+earned what, and you page with `cursor`, never an offset. Override any
+published filter with `strategy_overrides`; a key it does not publish is
+rejected, so read the catalogue rather than guessing.
+
+Report `data_ready` honestly. `partial` is usable — say the coverage share
+beside the results. Do not run a preset marked `not_ready` without telling
+the user which input is missing. If a search answers `features_not_built`,
+the nightly feature build has not run: say that, and never present the empty
+list as "nothing matches".
+
+`sourcing_live_listings(postcode_districts=[...])` (2 credits) is the
+on-market lane: asking against our valuation, yields on both bases, lease
+years, EPC gap, days listed, agent, signals. It has NO total by design — page
+with `offset` and read `has_more`; never tell a user how many listings exist.
+
+`sourcing_offmarket_owners(lad_code=...)` (2 credits) ranks owners as an
+approach list. Companies only, structurally — units held by private
+individuals are counted under `not_itemised` and never listed, and you must
+not try to identify them another way. Quote `scope.share_itemised`.
+
+`land_assembly(title_number=... | uprn=...)` (2 credits) returns the adjacent
+parcels, each owner, and the combined site. A neighbour with no owner is one
+no registered title has been linked to, not one nobody owns.
