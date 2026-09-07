@@ -107,3 +107,13 @@ Summarise the cluster in two sentences.
 - Lead every finding with what it means for the buyer, then the data.
 - If a tool returned nothing, say so in the section; never silently skip.
 - Every figure cites its tool and field.
+
+## Lease and risk (added 7 Sep 2026)
+
+`property_lease(uprn)` (1 credit) is the governing registered lease with its
+receipt: unexpired years today, `is_short_lease` under 80 years, the under-60
+flag, the enfranchisement and valuation notes; `status: no_lease` with the
+reason when the register holds none. `property_risk_report(uprn)` (1 credit)
+is every designation and hazard flag THREE-VALUED with its source — report
+`not_checked` and `defaulted_false` as exactly that, never as "clear". The
+`_batch` twins take up to 100 UPRNs at 1 credit per property answered.

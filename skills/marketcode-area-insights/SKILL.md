@@ -98,3 +98,13 @@ Optionally a bedroom band or property type focus, and a comparison set.
   never fill a gap with a plausible number.
 - Plain English; explain what each finding means for a buyer, a seller or
   a landlord, not only what the data says.
+
+## Yields, forecast, supply and demand (added 7 Sep 2026, all free)
+
+`market_yields(area_code, bedroom_band)` gives gross yield on two bases by
+month with n — quote the basis with the number. `market_forecast(area_code)`
+gives the last settled index point and up to seven forecast periods with
+bands; it is a projection of the smoothed index, not a valuation, and seven
+is the horizon published. `supply_demand(area_code)` gives live stock today
+and the monthly flow (added, reduced, reduction share, agent concentration,
+asking-to-sold); the stock series began 2026-09-05 and is forward-only.

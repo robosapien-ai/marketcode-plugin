@@ -28,7 +28,12 @@
         "mortgage_rates",
         "subject_transaction_anchor",
         "time_adjustment",
-        "valuation_accuracy"
+        "valuation_accuracy",
+        "property_lease",
+        "property_risk_report",
+        "market_yields",
+        "market_forecast",
+        "supply_demand"
       ],
       "creditsEstimate": "0 to 25 per call, stated before each paid call",
       "status": "live"
@@ -66,7 +71,9 @@
         "comps_adjustments",
         "subject_transaction_anchor",
         "time_adjustment",
-        "valuation_accuracy"
+        "valuation_accuracy",
+        "property_lease",
+        "market_forecast"
       ],
       "creditsEstimate": "10 to 21",
       "status": "live"
@@ -95,7 +102,10 @@
         "auction_stats",
         "auction_discount",
         "distressed_assets",
-        "market_ranking"
+        "market_ranking",
+        "market_yields",
+        "market_forecast",
+        "supply_demand"
       ],
       "creditsEstimate": "0",
       "status": "live"
@@ -121,7 +131,10 @@
         "equity_estimate",
         "planning_designations",
         "market_facts",
-        "listing_stock_series"
+        "listing_stock_series",
+        "property_lease_batch",
+        "property_risk_report_batch",
+        "market_yields"
       ],
       "creditsEstimate": "13 to 30",
       "status": "live"
@@ -148,7 +161,9 @@
         "lha_rate",
         "auction_stats",
         "cost_index",
-        "time_adjustment"
+        "time_adjustment",
+        "property_risk_report",
+        "market_forecast"
       ],
       "creditsEstimate": "5 to 17",
       "status": "live"
@@ -174,7 +189,10 @@
         "building_physical",
         "valuation_full",
         "planning_check",
-        "comps_adjustments"
+        "comps_adjustments",
+        "property_lease",
+        "property_risk_report",
+        "property_risk_report_batch"
       ],
       "creditsEstimate": "11 to 25",
       "status": "live"
@@ -192,7 +210,8 @@
         "property_summary",
         "epc_certificates",
         "transactions_by_uprn",
-        "planning_check"
+        "planning_check",
+        "property_risk_report"
       ],
       "creditsEstimate": "0 to 12",
       "status": "live"
