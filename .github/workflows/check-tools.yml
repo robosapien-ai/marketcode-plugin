@@ -43,18 +43,13 @@ jobs:
           live = {t["name"] for t in json.loads(txt)["result"]["tools"]}
           index = json.loads(pathlib.Path("skills/index.json").read_text())
           listed = {t for s in index["skills"] for t in s.get("tools", [])}
-          md = " ".join(p.read_text() for p in pathlib.Path("skills").glob("*/SKILL.md"))
-          in_md = {m for m in re.findall(r"`([a-z][a-z0-9_]+)`", md) if "_" in m and not m.isupper()}
-          # A backticked snake_case token in a SKILL.md that is ALSO a tool-shaped name
-          # (any listed tool, or any live tool) must be live. Plain field names in
-          # backticks (e.g. `uprn_match_tier`) are not tools and are not checked.
-          suspects = {m for m in in_md if m in listed or m in live or m.split("_")[0] in {t.split("_")[0] for t in live}}
+          # SKILL.md prose is not checked token by token: parameter names
+          # (`area_code`, `epc_in`) are tool-shaped and legitimately not tools.
+          # A tool a skill USES must be in its index.json list, and that list
+          # is what the check reads.
           bad_index = sorted(listed - live)
-          bad_md = sorted(suspects - live)
           print(f"live tools: {len(live)}; listed in index.json: {len(listed)}; url: {url}")
           if bad_index:
               print("index.json names tools the server does not serve:", bad_index); sys.exit(1)
-          if bad_md:
-              print("SKILL.md files name tool-shaped tokens the server does not serve:", bad_md); sys.exit(1)
           print("ok")
           PY
