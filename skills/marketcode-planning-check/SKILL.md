@@ -16,7 +16,7 @@ wording rules.
 
 ## Credit budget
 
-`planning_designations`, `planning_applications`, `property_flood_risk`,
+`planning_designations`, `planning_check`, `planning_applications`, `property_flood_risk`,
 `epc_certificates` and `transactions_by_uprn` cost 0. `property_summary`
 costs 4 and is optional (for the existing building). `address_resolve`
 costs 8 if the user typed an address. Say so, then proceed.
@@ -30,7 +30,8 @@ proposal, deliver the position and say which proposals it would bear on.
 
 ## Phase A: gather (parallel)
 
-1. `planning_designations(postcode or location)`: thirteen checks in one
+1. `planning_designations(postcode or location)`: thirteen checks in one call; `planning_check(checks=[...])` when only some are needed, or for SSSI and agricultural land grade, which the bundle does not include. Both free.
+   `planning_designations`: thirteen checks in one
    call (conservation area, listed buildings, Article 4, TPO, green belt,
    AONB, national park, flood zones, SSSI, ancient woodland, scheduled
    monuments, brownfield register, heritage at risk).

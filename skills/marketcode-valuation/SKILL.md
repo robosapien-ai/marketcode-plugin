@@ -23,9 +23,11 @@ wording rules. This skill adds the method.
 | `property_summary` | 4 | always |
 | `property_comps` | 6 | always |
 | `listing_history` | 3 | when the property has been marketed |
+| `comps_adjustments` | 2 | when the reader needs the working behind the estimate: each comp's sale, its index adjustment to today, relisting penalty and the IQR fence |
+| `subject_transaction_anchor`, `time_adjustment`, `valuation_accuracy` | 0 | anchor the subject's own sale to today; carry any price to today; quote our published forward-validated error (`no_rows_yet` until October 2026 — say so, never a made-up figure) |
 | `valuation_full`, `transactions_by_uprn`, `property_history`, `epc_certificates`, `council_tax_band`, `property_flood_risk`, `planning_designations`, `market_index_series`, `market_facts`, `equity_estimate` | 0 | always |
 
-Typical run: 10 to 21 credits. Say so in one line, then proceed. Never ask
+Typical run: 10 to 23 credits. Say so in one line, then proceed. Never ask
 permission again mid-run.
 
 ## Inputs

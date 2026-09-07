@@ -24,7 +24,7 @@ its own, use `marketcode-valuation`; this skill is for schemes.
 | `property_summary` (existing building on site) | 4 |
 | `planning_designations`, `planning_applications`, `property_flood_risk`, `market_facts`, `market_index_series`, `asking_rent_index_series`, `commercial_index_series`, `commercial_rent_index_series`, `valuation_full`, `mortgage_rates`, `lha_rate`, `auction_stats` | 0 |
 
-Typical run: 5 to 17 credits.
+Typical run: 5 to 17 credits. `cost_index` (free) gives the tender / output / deflator series for the cost stack's inflation assumption; `time_adjustment` (free) carries any historic price to today.
 
 ## Inputs
 

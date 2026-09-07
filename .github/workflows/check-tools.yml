@@ -1,0 +1,50 @@
+name: Skills name real tools
+
+# Every tool a skill lists must exist on the MCP server. The plugin repo had
+# no CI at all, so a renamed or removed tool would sit in a skill's `tools`
+# list — and in a SKILL.md credit table — looking authoritative until a user
+# hit it. The server's catalogue (`_catalogue.TOOL_TITLES` in
+# marketcode-service) is the source of truth: it is itself tested against the
+# registered tools, so a name found there is a name a model can call.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: robosapien-ai/marketcode-service
+          token: ${{ secrets.CI_TOKEN }}
+          path: _marketcode-service
+          fetch-depth: 1
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Every listed tool exists in the server catalogue
+        run: |
+          python - <<'PY'
+          import json, pathlib, re, sys
+          cat = pathlib.Path("_marketcode-service/mcp/src/marketcode_mcp/_catalogue.py").read_text()
+          block = cat.split("TOOL_TITLES", 1)[1].split("}", 1)[0]
+          titles = set(re.findall(r'^\s*"([a-z_0-9]+)":', block, re.M))
+          index = json.loads(pathlib.Path("skills/index.json").read_text())
+          listed = {t for s in index["skills"] for t in s.get("tools", [])}
+          skill_md = " ".join(p.read_text() for p in pathlib.Path("skills").glob("*/SKILL.md"))
+          mentioned = set(re.findall(r"`([a-z][a-z_0-9]+)`", skill_md)) & {t for t in re.findall(r"[a-z][a-z_0-9]+", skill_md)}
+          bad_index = sorted(listed - titles)
+          bad_md = sorted({m for m in mentioned if m in listed or m.startswith(("property_","market_","valuation_","planning_","sourcing_","address_","auction_","ownership_","listing_","area_","comps_","subject_","time_","cost_","query_","epc_","energy_","retrofit_","solar_","equity_","long_held","mortgage_","lha_","h3_","building_","mixed_use","plot_","agent_","transactions_","distressed_","council_","commercial_","asking_"))} - titles)
+          print(f"catalogue tools: {len(titles)}; listed in index.json: {len(listed)}")
+          if bad_index:
+              print("index.json names tools the server does not have:", bad_index); sys.exit(1)
+          if bad_md:
+              print("SKILL.md files name tools the server does not have:", bad_md); sys.exit(1)
+          print("ok")
+          PY
