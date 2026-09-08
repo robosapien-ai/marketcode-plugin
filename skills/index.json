@@ -38,7 +38,8 @@
         "commercial_property",
         "sourcing_strategies",
         "property_report",
-        "property_rental_estimate"
+        "property_rental_estimate",
+        "property_media"
       ],
       "creditsEstimate": "0 to 25 per call, stated before each paid call",
       "status": "live"
@@ -195,7 +196,8 @@
         "planning_precedents",
         "commercial_market",
         "property_rental_estimate",
-        "property_report"
+        "property_report",
+        "property_media"
       ],
       "creditsEstimate": "5 to 17",
       "status": "live"
@@ -228,7 +230,8 @@
         "property_planning_history",
         "commercial_property",
         "property_report",
-        "property_energy_retrofit"
+        "property_energy_retrofit",
+        "property_media"
       ],
       "creditsEstimate": "11 to 25",
       "status": "live"

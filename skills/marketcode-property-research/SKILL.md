@@ -71,3 +71,23 @@ the field's coverage beside the figure. For a shop, office or other rated
 unit, `commercial_property(uprn | uarn)` (2 credits) is the report; its
 `income_basis_value` is an indicative capitalisation of the rateable value,
 not a valuation — say so.
+
+## Property media (added 8 Sep 2026)
+
+`property_media(uprn)` (1 credit) returns photographs, floorplans, EPC graphs
+and brochures for a property. Narrow with `types`.
+
+EVERY LINK IS OURS AND EXPIRES. Do not store them — call again for fresh ones.
+The portal's own URL is never returned, so a saved response cannot become a
+hotlink later.
+
+COVERAGE IS UNEVEN. We hold the actual files for a minority of floorplans and
+brochures only; everything else, including all photographs, is a link that
+redirects to the source. `n_held_by_us` against `n_redirected` says which.
+`no_media` is as often a UPRN matching gap as an absence of photographs —
+about a third of listings never resolve to a UPRN — so do not tell a user a
+property has no pictures.
+
+Copyright in a property photograph belongs to the agent or their photographer.
+These links identify a listing; they do not convey a licence to reproduce the
+images. Pass them through for viewing; do not copy the files elsewhere.
