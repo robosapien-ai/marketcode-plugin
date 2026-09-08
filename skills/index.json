@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-07",
+  "updated": "2026-09-08",
   "skills": [
     {
       "slug": "marketcode-property-research",
@@ -76,7 +76,8 @@
         "time_adjustment",
         "valuation_accuracy",
         "property_lease",
-        "market_forecast"
+        "market_forecast",
+        "commercial_market"
       ],
       "creditsEstimate": "10 to 21",
       "status": "live"
@@ -110,7 +111,8 @@
         "market_forecast",
         "supply_demand",
         "data_coverage",
-        "sourcing_strategies"
+        "sourcing_strategies",
+        "commercial_market"
       ],
       "creditsEstimate": "0",
       "status": "live"
@@ -144,7 +146,9 @@
         "sourcing_strategies",
         "sourcing_live_listings",
         "sourcing_offmarket_owners",
-        "land_assembly"
+        "land_assembly",
+        "sourcing_commercial",
+        "parcel_lookup"
       ],
       "creditsEstimate": "13 to 30",
       "status": "live"
@@ -177,7 +181,9 @@
         "build_cost",
         "commercial_property",
         "sourcing_live_listings",
-        "sourcing_strategies"
+        "sourcing_strategies",
+        "planning_precedents",
+        "commercial_market"
       ],
       "creditsEstimate": "5 to 17",
       "status": "live"
@@ -229,7 +235,8 @@
         "planning_check",
         "property_risk_report",
         "property_planning_history",
-        "property_planning_history_batch"
+        "property_planning_history_batch",
+        "planning_precedents"
       ],
       "creditsEstimate": "0 to 12",
       "status": "live"

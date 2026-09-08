@@ -122,3 +122,40 @@ three-valued: report `applies` as constraints and `unchecked` as unknown,
 never as clear. `coverage.covered` is false outside the 33 London boroughs
 today; `status: not_covered` is a different answer from `no_applications`,
 and it is not charged. The `_batch` twin takes up to 100 UPRNs.
+
+## Development, planning precedent and commercial (added 8 Sep 2026)
+
+`planning_precedents(lat, lon)` or `(lpa_code=...)` (2 credits) is the
+decision record nearby: an approval RATE with its denominator, a median
+decision time, a breakdown by application type, and examples. TWO
+DENOMINATORS — the rate is over approvals plus refusals, the timing over the
+~13% of applications carrying both dates. Quote each with its own n. It is a
+rate, never a probability: do not turn it into a chance of approval.
+Withdrawals and advisory outcomes (observations on another authority's
+application, confirmations consent was not required) are excluded and shown
+under `excluded_from_rate`. Coverage is the 35 London authorities — elsewhere
+an empty answer is a coverage gap, not a quiet planning history.
+
+`site_appraisal(uprn, scheme_gia_m2=..., rate_gbp_m2=...)` now prices the
+build: index-rebased, localised by region, with on-costs, as a low/mid/high
+range and a cost per unit. You must supply the rate — no benchmark is loaded,
+and without one the block reads `not_available` rather than inventing one. It
+is CONSTRUCTION COST ONLY: one side of a residual, never a residual. Say so.
+
+`commercial_market(sector, lad_code)` (free) returns the capital index, the
+rent index and rated stock. The two indices are NOT comparable — one is
+quarterly and thin (check `n_pairs` and `thin_periods`), the other moves once
+per rating list. Check `area.index_scope` before calling a series local: only
+19 authorities have one, and the national series is substituted and labelled.
+
+`sourcing_commercial(lad_code, sectors=[...])` (2 credits) searches rated
+stock. Rateable value is the VOA's estimated annual rental value at the list's
+valuation date, NOT passing rent. `income_basis_value` divides it by the
+district's auction yield and reads `not_available` where there is none — never
+substitute a yield of your own. No £/m² is published and you should not
+compute one: the VOA measured area is not loaded.
+
+`parcel_lookup(title_number= | uprn= | inspire_id=)` (1 credit) is one parcel
+with its owner, units, plot utilisation and constraints. Constraints are
+three-valued — `not_checked` is not `false`, and unbuilt ground is an upper
+bound, not a developable area.
