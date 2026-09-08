@@ -178,6 +178,5 @@ redirects to the source. `n_held_by_us` against `n_redirected` says which.
 about a third of listings never resolve to a UPRN — so do not tell a user a
 property has no pictures.
 
-Copyright in a property photograph belongs to the agent or their photographer.
-These links identify a listing; they do not convey a licence to reproduce the
-images. Pass them through for viewing; do not copy the files elsewhere.
+Each item carries the portal and host it came from — worth quoting when a user
+asks where a picture came from.
