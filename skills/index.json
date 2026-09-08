@@ -36,7 +36,9 @@
         "supply_demand",
         "data_coverage",
         "commercial_property",
-        "sourcing_strategies"
+        "sourcing_strategies",
+        "property_report",
+        "property_rental_estimate"
       ],
       "creditsEstimate": "0 to 25 per call, stated before each paid call",
       "status": "live"
@@ -77,7 +79,8 @@
         "valuation_accuracy",
         "property_lease",
         "market_forecast",
-        "commercial_market"
+        "commercial_market",
+        "property_rental_estimate"
       ],
       "creditsEstimate": "10 to 21",
       "status": "live"
@@ -112,7 +115,8 @@
         "supply_demand",
         "data_coverage",
         "sourcing_strategies",
-        "commercial_market"
+        "commercial_market",
+        "area_report"
       ],
       "creditsEstimate": "0",
       "status": "live"
@@ -148,7 +152,13 @@
         "sourcing_offmarket_owners",
         "land_assembly",
         "sourcing_commercial",
-        "parcel_lookup"
+        "parcel_lookup",
+        "changes_since",
+        "saved_search_create",
+        "saved_search_list",
+        "saved_search_update",
+        "saved_search_delete",
+        "saved_search_run"
       ],
       "creditsEstimate": "13 to 30",
       "status": "live"
@@ -183,7 +193,9 @@
         "sourcing_live_listings",
         "sourcing_strategies",
         "planning_precedents",
-        "commercial_market"
+        "commercial_market",
+        "property_rental_estimate",
+        "property_report"
       ],
       "creditsEstimate": "5 to 17",
       "status": "live"
@@ -214,7 +226,9 @@
         "property_risk_report",
         "property_risk_report_batch",
         "property_planning_history",
-        "commercial_property"
+        "commercial_property",
+        "property_report",
+        "property_energy_retrofit"
       ],
       "creditsEstimate": "11 to 25",
       "status": "live"

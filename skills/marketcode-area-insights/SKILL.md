@@ -117,3 +117,36 @@ designation flags were checked and how fully, lease and rateable link
 shares, the official planning coverage row (London boroughs only today) and
 the listing sweep share. State the coverage before a figure from a thin
 field, and prefer it to guessing why a number looks low.
+
+## Change, reports and saved searches (added 8 Sep 2026)
+
+`property_report(uprn)` and `area_report(lad_code, postcode_district)` (5
+credits each) are the composed documents. ALWAYS read `sections_degraded`
+before summarising — a section that could not answer says which KIND of
+absence it is, and reporting a document as complete when two sections failed
+is the thing to avoid. For `area_report`, pass BOTH a LAD GSS code and a
+postcode district: readiness, commercial and planning are keyed on the
+authority, the live listing lane on the district.
+
+`property_rental_estimate(uprn)` (1 credit) always carries a `basis`. Quote it.
+`area_asking` is a locality median applied to one property — give the p25–p75
+range with it. The yield is GROSS. If `plausibility` reads `implausible`, the
+area cell and the property are not comparable and the yield is withheld: say
+so rather than reaching for the number.
+
+`property_energy_retrofit(uprn)` (1 credit): MEES is a legal bar on letting,
+not a discount. The measures list is not available and must not be replaced
+with a generic one.
+
+`changes_since(cursor=...)` (1 credit) is the portal change feed. The cursor is
+an event id, not a time. `added` and `price_reduced` are live; `delisted` has
+one row in the entire table, so withdrawal is NOT observed — an empty result
+there is not evidence that nothing was withdrawn. Planning decisions, ownership
+changes, lease crossings, new EPCs and AVM moves have no feed at all.
+
+**Saved searches are the only tools that WRITE.** `saved_search_create`,
+`_update` and `_delete` change the user's account and `_run` advances a stored
+cursor. Confirm before creating or deleting, and name the search rather than
+its id when you do. Managing them is free; only `_run` spends, and it spends
+what the underlying search costs. `_update` REPLACES params — send the whole
+object, or filters the user thinks they kept will be dropped.
